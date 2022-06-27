@@ -16,7 +16,7 @@ export class AuthService {
       const user = {
         _id: findUser._id,
         email: findUser.email,
-        role: findUser.role,
+        roles: findUser.roles,
       };
       return user;
     }

@@ -1,13 +1,7 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  UseGuards,
-  Request,
-} from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { Body, Controller, Get, Post, Request } from '@nestjs/common';
+import { Roles } from 'src/roles.decorator';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UserRole } from './model';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -18,8 +12,7 @@ export class UserController {
   signUp(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
-
-  @UseGuards(JwtAuthGuard)
+  @Roles(UserRole.ADMIN)
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;

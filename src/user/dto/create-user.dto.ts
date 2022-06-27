@@ -1,5 +1,4 @@
-import { IsEmail, IsEnum, IsNotEmpty, IsOptional } from 'class-validator';
-import { UserRole } from '../model';
+import { IsArray, IsEmail, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateUserDto {
   @IsEmail()
@@ -9,6 +8,6 @@ export class CreateUserDto {
   password: string;
 
   @IsOptional()
-  @IsEnum(UserRole)
-  role: string;
+  @IsArray()
+  roles: string;
 }
