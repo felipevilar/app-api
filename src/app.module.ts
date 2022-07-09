@@ -10,6 +10,9 @@ import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './roles.guard';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { ClientsModule } from './clients/clients.module';
+import { AddressModule } from './address/address.module';
+import { CallsModule } from './calls/calls.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -26,8 +29,12 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
         useUnifiedTopology: true,
       }),
     }),
+    AddressModule,
+    ClientsModule,
+    CallsModule,
     UserModule,
     AuthModule,
+    ClientsModule,
   ],
   controllers: [AppController],
   providers: [

@@ -1,33 +1,21 @@
 import { Type } from 'class-transformer';
 import {
-  IsEmail,
   IsNotEmpty,
   IsNotEmptyObject,
-  IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator';
 import { AddressDto } from 'src/address/dto/address.dto';
-import { ContactDto } from 'src/clients/dto/contact.dto';
-import { InfoDto } from './info.dto';
+import { ContactDto } from './contact.dto';
 
-export class CreateUserDto {
+export class CreateClientDto {
   @IsString()
   @IsNotEmpty()
   name: string;
 
   @IsString()
   @IsNotEmpty()
-  @IsOptional()
-  surname: string;
-
-  @IsEmail()
-  @IsNotEmpty()
-  email: string;
-
-  @IsNotEmpty()
-  @IsString()
-  password: string;
+  register: string;
 
   @IsNotEmptyObject()
   @ValidateNested()
@@ -38,9 +26,4 @@ export class CreateUserDto {
   @ValidateNested()
   @Type(() => ContactDto)
   contact: ContactDto;
-
-  @IsOptional()
-  @ValidateNested()
-  @Type(() => InfoDto)
-  info: InfoDto;
 }
